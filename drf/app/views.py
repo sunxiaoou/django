@@ -1,5 +1,6 @@
 import uuid
 
+from django.middleware.csrf import get_token
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -58,6 +59,11 @@ class BookView(APIView):
 
 class LoginView(APIView):
     authentication_classes = []
+
+    @staticmethod
+    def get(request):
+        csrf_token = get_token(request)
+        return Response({'msg': 'ok', 'data': csrf_token})
 
     @staticmethod
     def post(request):

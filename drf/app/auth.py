@@ -8,8 +8,8 @@ from app.models import UserToken
 class Authentication(BaseAuthentication):
     def authenticate(self, request: Request):
         # token = request.GET.get('token')
-        # token = request.headers['x-csrftoken']
-        token = request.COOKIES['token']
+        token = request.headers['x-csrftoken']
+        # token = request.COOKIES['token']
         user_token = UserToken.objects.filter(token=token).first()
         if user_token:
             return user_token.user, token
