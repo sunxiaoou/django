@@ -1,5 +1,6 @@
 import uuid
 
+from django.http import JsonResponse
 from django.middleware.csrf import get_token
 from rest_framework.request import Request
 from rest_framework.response import Response
@@ -26,14 +27,6 @@ class BooksView(APIView):
         return Response({'msg': 'fail', 'data': serializer.errors})
 
 
-class BooksView2(APIView):
-    @staticmethod
-    def get(request: Request):
-        books = Book.objects.order_by('pub_date')
-        serializer = BookSerializer(books, many=True)
-        return Response({'msg': 'ok', 'data': serializer.data})
-
-
 class BookView(APIView):
     @staticmethod
     def get(request, pk):
@@ -53,3 +46,8 @@ class BookView(APIView):
     def delete(request, pk):
         Book.objects.filter(id=pk).delete()
         return Response({"msg": 'ok'})
+
+
+def get_csrf_token(request):
+    csrf_token = get_token(request)
+    return JsonResponse({'msg': 'ok', 'data': csrf_token})

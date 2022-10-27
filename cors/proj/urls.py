@@ -20,6 +20,7 @@ from app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('books/api/', views.BooksView.as_view()),
-    re_path(r'book/api/(?P<pk>\d+)', views.BookView.as_view()),
+    path('api/token/', views.get_csrf_token),
+    path('api/books/', views.BooksView.as_view()),
+    re_path(r'api/book/(?P<pk>\d+)', views.BookView.as_view()),
 ]
