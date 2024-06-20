@@ -19,9 +19,9 @@ class DrfTestCase(TestCase):
             "password": "sun_xo"
         })
         headers = {
-            'X-CSRFtoken': 'pNkL6P7qNlUAI6gkMm0VW92zduIpQhR7KIHzLc9MmZ74eODHRTw6BNSqi60e6dcA',
+            # 'X-CSRFtoken': 'pNkL6P7qNlUAI6gkMm0VW92zduIpQhR7KIHzLc9MmZ74eODHRTw6BNSqi60e6dcA',
             'Content-Type': 'application/json',
-            'Cookie': 'csrftoken=Kh2Zco1ifK5PjYC7jk1f6Qi1r7bWvh2t'
+            # 'Cookie': 'csrftoken=Kh2Zco1ifK5PjYC7jk1f6Qi1r7bWvh2t'
         }
         response = requests.request("POST", url, headers=headers, data=payload)
         response.raise_for_status()
